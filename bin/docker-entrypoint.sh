@@ -41,6 +41,14 @@ create_keystore() {
     echo "${OIDC_CLIENT_SECRET}" | su-exec elasticsearch bin/elasticsearch-keystore add --stdin --force xpack.security.authc.realms.oidc.oidc1.rp.client_secret
 }
 
+prepare_p12_file() {
+    # if .p12 is given, move to ES config directory and chown
+    [ -n "${SSL_P12_FILE}" ] || return
+
+    cp "${SSL_P12_FILE}" /usr/share/elasticsearch/config/tls.p12
+    chown elasticsearch /usr/share/elasticsearch/config/tls.p12
+}
+
 # The virtual file /proc/self/cgroup should list the current cgroup
 # membership. For each hierarchy, you can follow the cgroup path from
 # this file to the cgroup filesystem (usually /sys/fs/cgroup/) and
@@ -67,10 +75,7 @@ install_plugins
 process_templates
 
 create_keystore
-
-# Make sure ES can read a given .p12 file for https
-[ -n "${SSL_P12_FILE}" ] || return
-[ -f "${SSL_P12_FILE}" ] && chown elasticsearch "${SSL_P12_FILE}"
+prepare_p12_file
 
 exec_init_scripts
 

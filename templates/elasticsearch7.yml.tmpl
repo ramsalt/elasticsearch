@@ -54,5 +54,5 @@ xpack.security.authc.realms.oidc.oidc1:
 
 {{ if (getenv "SSL_P12_FILE") }}
 xpack.security.http.ssl.enabled: true
-xpack.security.http.ssl.keystore.path: "{{ getenv "SSL_P12_FILE" }}"
+xpack.security.http.ssl.keystore.path: tls.p12
 {{ end }}
