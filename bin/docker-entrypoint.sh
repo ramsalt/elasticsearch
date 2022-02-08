@@ -68,6 +68,10 @@ process_templates
 
 create_keystore
 
+# Make sure ES can read a given .p12 file for https
+[ -n "${SSL_P12_FILE}" ] || return
+[ -f "${SSL_P12_FILE}" ] && chown elasticsearch "${SSL_P12_FILE}"
+
 exec_init_scripts
 
 if [[ "${1}" == 'make' ]]; then

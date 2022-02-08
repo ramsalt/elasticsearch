@@ -51,3 +51,8 @@ xpack.security.authc.realms.oidc.oidc1:
     op.jwkset_path: "{{ getenv "OIDC_JWKSET_PATH" "https://www.googleapis.com/oauth2/v3/certs" }}"
     claims.principal: email
     claim_patterns.principal: "{{ getenv "CLAIMS_PATTERN" "^([^@]+)@ramsalt\\\\.com$" }}"
+
+{{ if (getenv "SSL_P12_FILE") }}
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.keystore.path: "{{ getenv "SSL_P12_FILE" }}"
+{{ end }}
