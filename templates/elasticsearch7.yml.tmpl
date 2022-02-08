@@ -36,6 +36,8 @@ cluster.routing.allocation.awareness.attributes: {{ getenv "ES_SHARD_ALLOCATION_
 {{ end }}
 {{ end }}
 
+xpack.security.authc.token.enabled: true
+
 xpack.security.authc.realms.oidc.oidc1:
     rp.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
     rp.response_type: "code"
