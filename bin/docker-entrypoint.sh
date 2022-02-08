@@ -48,7 +48,7 @@ prepare_p12_file() {
     cp "${SSL_P12_FILE}" /usr/share/elasticsearch/config/tls.p12
     chown elasticsearch /usr/share/elasticsearch/config/tls.p12
 
-    echo "" | su-exec elasticsearch bin/elasticsearch-keystore add --stdin --force xpack.security.http.ssl.keystore.secure_password
+    echo "elasticsearch" | su-exec elasticsearch bin/elasticsearch-keystore add --stdin --force xpack.security.http.ssl.keystore.secure_password
 }
 
 # The virtual file /proc/self/cgroup should list the current cgroup
