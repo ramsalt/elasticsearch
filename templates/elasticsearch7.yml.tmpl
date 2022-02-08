@@ -48,4 +48,4 @@ xpack.security.authc.realms.oidc.oidc1:
     op.userinfo_endpoint: "{{ getenv "OIDC_USERINFO_ENDPOINT" "https://openidconnect.googleapis.com/v1/userinfo" }}"
     op.jwkset_path: "{{ getenv "OIDC_JWKSET_PATH" "https://www.googleapis.com/oauth2/v3/certs" }}"
     claims.principal: email
-    claim_patterns.principal: "{{ getenv "CLAIMS_PATTERN" "^([^@]+)@ramsalt\\.com$" }}"
+    claim_patterns.principal: "{{ getenv "CLAIMS_PATTERN" "^([^@]+)@ramsalt\\\\.com$" }}"
