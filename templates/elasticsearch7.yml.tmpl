@@ -39,6 +39,7 @@ cluster.routing.allocation.awareness.attributes: {{ getenv "ES_SHARD_ALLOCATION_
 xpack.security.authc.token.enabled: true
 
 xpack.security.authc.realms.oidc.oidc1:
+    order: 2
     rp.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
     rp.response_type: "code"
     rp.requested_scopes: ["openid", "email"]
