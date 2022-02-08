@@ -4,7 +4,7 @@ host ?= localhost
 max_try ?= 1
 wait_seconds ?= 1
 delay_seconds ?= 0
-command = curl -s -o /dev/null --cacert /srv/ssl/ca.crt -I -w '%{http_code}' https://${host}:9200 | grep -q 200
+command = curl -s -o /dev/null --insecure -I -w '%{http_code}' https://${host}:9200 | grep -q 200
 service = Elasticsearch
 
 default: check-ready
