@@ -36,6 +36,9 @@ cluster.routing.allocation.awareness.attributes: {{ getenv "ES_SHARD_ALLOCATION_
 {{ end }}
 {{ end }}
 
+discovery.type: single-node
+
+xpack.security.enabled: true
 xpack.security.authc.token.enabled: true
 
 xpack.security.authc.realms.oidc.oidc1:
