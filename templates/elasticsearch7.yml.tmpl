@@ -38,22 +38,24 @@ cluster.routing.allocation.awareness.attributes: {{ getenv "ES_SHARD_ALLOCATION_
 
 discovery.type: single-node
 
-xpack.security.enabled: true
-xpack.security.authc.token.enabled: true
-
-xpack.security.authc.realms.oidc.oidc1:
-    order: 2
-    rp.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
-    rp.response_type: "code"
-    rp.requested_scopes: ["openid", "email"]
-    rp.redirect_uri: "{{ getenv "KIBANA_ENDPOINT_URL" }}/api/security/oidc/callback"
-    op.issuer: "{{ getenv "OIDC_ISSUER" "https://accounts.google.com" }}"
-    op.authorization_endpoint: "{{ getenv "OIDC_AUTHORIZATION_ENDPOINT" "https://accounts.google.com/o/oauth2/v2/auth" }}"
-    op.token_endpoint: "{{ getenv "OIDC_TOKEN_ENDPOINT" "https://oauth2.googleapis.com/token" }}"
-    op.userinfo_endpoint: "{{ getenv "OIDC_USERINFO_ENDPOINT" "https://openidconnect.googleapis.com/v1/userinfo" }}"
-    op.jwkset_path: "{{ getenv "OIDC_JWKSET_PATH" "https://www.googleapis.com/oauth2/v3/certs" }}"
-    claims.principal: email
-    claim_patterns.principal: "{{ getenv "CLAIMS_PATTERN" "^([^@]+)@ramsalt\\\\.com$" }}"
+#xpack.security.enabled: true
+#
+# disable oidc as it needs a platinum license
+#xpack.security.authc.token.enabled: true
+#
+#xpack.security.authc.realms.oidc.oidc1:
+#    order: 2
+#    rp.client_id: "{{ getenv "OIDC_CLIENT_ID" }}"
+#    rp.response_type: "code"
+#    rp.requested_scopes: ["openid", "email"]
+#    rp.redirect_uri: "{{ getenv "KIBANA_ENDPOINT_URL" }}/api/security/oidc/callback"
+#    op.issuer: "{{ getenv "OIDC_ISSUER" "https://accounts.google.com" }}"
+#    op.authorization_endpoint: "{{ getenv "OIDC_AUTHORIZATION_ENDPOINT" "https://accounts.google.com/o/oauth2/v2/auth" }}"
+#    op.token_endpoint: "{{ getenv "OIDC_TOKEN_ENDPOINT" "https://oauth2.googleapis.com/token" }}"
+#    op.userinfo_endpoint: "{{ getenv "OIDC_USERINFO_ENDPOINT" "https://openidconnect.googleapis.com/v1/userinfo" }}"
+#    op.jwkset_path: "{{ getenv "OIDC_JWKSET_PATH" "https://www.googleapis.com/oauth2/v3/certs" }}"
+#    claims.principal: email
+#    claim_patterns.principal: "{{ getenv "CLAIMS_PATTERN" "^([^@]+)@ramsalt\\\\.com$" }}"
 
 {{ if (getenv "SSL_P12_FILE") }}
 xpack.security.http.ssl.enabled: true
